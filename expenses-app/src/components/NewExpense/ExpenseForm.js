@@ -1,35 +1,36 @@
 import './ExpenseForm.css';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+
+const EMPTY_FORM = {
+    enteredTitle: '',
+    enteredAmount: '',
+    enteredDate: ''
+}
 
 export default function ExpenseForm(props) {
-    const [userInput, setUserInput] = useState({
-        enteredTitle: '',
-        enteredAmount: '',
-        enteredDate: ''
-    })
-    const titleChangeHandler = (event) => {
-        setUserInput((prevState) => {
-            return { ...prevState, enteredTitle: event.target.value }
-        });
-    }
-    const amountChangeHandler = (event) => {
-        setUserInput((prevState) => {
-            return { ...prevState, enteredAmount: event.target.value }
-        })
-    }
-    const dateChangeHandler = (event) => {
-        setUserInput((prevState) => {
-            return { ...prevState, enteredDate: event.target.value }
-        })
-    }
+    const [userInput, setUserInput] = useState(EMPTY_FORM);
+
+    const titleChangeHandler = event => setUserInput(prevState => {
+        return {...prevState, enteredTitle: event.target.value}
+    });
+
+    const amountChangeHandler = event => setUserInput(prevState => {
+        return {...prevState, enteredAmount: event.target.value}
+    });
+
+    const dateChangeHandler = event => setUserInput(prevState => {
+        return {...prevState, enteredDate: event.target.value}
+    });
+
     const submitHandler = (event) => {
         event.preventDefault();
-        props.onSaveExpenseData(userInput);
-        setUserInput({
-            enteredTitle: '',
-            enteredAmount: '',
-            enteredDate: ''
-        })
+        const finalData = {
+            title: userInput.enteredTitle,
+            amount: +userInput.enteredAmount,
+            date: new Date(userInput.enteredDate)
+        }
+        props.onSaveExpenseData(finalData);
+        setUserInput(EMPTY_FORM);
     }
 
     return (
@@ -40,7 +41,7 @@ export default function ExpenseForm(props) {
                     <input
                         value={userInput.enteredTitle}
                         type='text'
-                        onChange={titleChangeHandler} />
+                        onChange={titleChangeHandler}/>
                 </div>
                 <div className='new-expense__control'>
                     <label>Price</label>
@@ -64,6 +65,7 @@ export default function ExpenseForm(props) {
                 </div>
             </div>
             <div className='new-expense__actions'>
+                <button type='button' onClick={props.onCancelClick}>Cancel</button>
                 <button type='submit'>Add expense</button>
             </div>
         </form>
