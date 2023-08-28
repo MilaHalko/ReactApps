@@ -16,22 +16,7 @@ function Expenses(props) {
         <div>
             <Card className="expenses">
                 <ExpensesFilter onChangeFilter={filterChahgeHandler} year={filteredYear} />
-                <ExpenseItem
-                    amount={props.items[0].amount}
-                    title={props.items[0].title}
-                    date={props.items[0].date} />
-                <ExpenseItem
-                    amount={props.items[1].amount}
-                    title={props.items[1].title}
-                    date={props.items[1].date} />
-                <ExpenseItem
-                    amount={props.items[2].amount}
-                    title={props.items[2].title}
-                    date={props.items[2].date} />
-                <ExpenseItem
-                    amount={props.items[3].amount}
-                    title={props.items[3].title}
-                    date={props.items[3].date} />
+                {props.items.map(expense => <ExpenseItem amount={expense.amount} title={expense.title} date={expense.date}/>)}
             </Card>
         </div>
     );
