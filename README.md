@@ -1,4 +1,10 @@
 # ReactApps
+### [course-goals-app screen](/course-goals-app)
+
+![course-goals-app screen](/course-goals-app/public/images/CourseGoalsAppScreenshot.png)
+----------------------------------------------------------------------------------
+
+
 ### [expenses-app screen](/expenses-app)
 
 ![expenses-app screen](/expenses-app/public/screenshots/ExpensesInterface3.png)
