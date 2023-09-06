@@ -1,6 +1,7 @@
+import React from "react";
+import classes from "../../styles/UserInput.module.css"
 import InputBlock from "./InputBlock";
 import ActionButtons from "./ActionButtons";
-import React from "react";
 
 const initialUserInput = {
     'current-savings': 10000,
@@ -9,11 +10,12 @@ const initialUserInput = {
     'duration': 10
 }
 
-export default function UserInput() {
+export default function UserInput(props) {
     const [userInput, setUserInput] = React.useState(initialUserInput)
 
     const formSubmitHandler = (event) => {
         event.preventDefault()
+        props.onCalculate(userInput)
     }
 
     const resetClickHandler = () => {
@@ -22,13 +24,13 @@ export default function UserInput() {
 
     const inputChangeHandler = (input, value) => {
         setUserInput(prevValue => {
-            return {...prevValue, [input]: value}
+            return {...prevValue, [input]: +value}
         })
     }
 
     return (
-        <form onSubmit={formSubmitHandler} className='form'>
-            <div className='input-group'>
+        <form onSubmit={formSubmitHandler}>
+            <div className={classes["input-group"]}>
                 <InputBlock id='current-savings'
                             label='Current savings ($)'
                             value={userInput["current-savings"]}
@@ -38,7 +40,7 @@ export default function UserInput() {
                             value={userInput["yearly-contribution"]}
                             onInputChange={inputChangeHandler}/>
             </div>
-            <div className='input-group'>
+            <div className={classes["input-group"]}>
                 <InputBlock id='expected-return'
                             label='Expected interest (%, per year)'
                             value={userInput["expected-return"]}

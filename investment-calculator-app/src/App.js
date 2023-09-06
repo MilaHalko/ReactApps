@@ -4,8 +4,14 @@ import UserInput from "./components/UserInput/UserInput";
 import Table from "./components/Table/Table";
 
 export default function App() {
+    const [userInput, setUserInput] = React.useState(null)
     const calculateHandler = (userInput) => {
-        const yearlyData = []
+        setUserInput(userInput)
+    }
+
+    const yearlyData = []
+
+    if (userInput) {
         let currentSavings = +userInput['current-savings']
         const yearlyContribution = +userInput['yearly-contribution']
         const expectedReturn = +userInput['expected-return'] / 100
@@ -26,8 +32,8 @@ export default function App() {
     return (
         <div>
             <Header/>
-            <UserInput/>
-            <Table/>
+            <UserInput onCalculate={calculateHandler}/>
+            <Table data={yearlyData} userInput={userInput}/>
         </div>
     )
 }

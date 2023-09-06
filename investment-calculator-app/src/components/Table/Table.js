@@ -1,16 +1,19 @@
-import Headline from "./Headline";
-import Output from "./Output";
+import classes from "../../styles/Table.module.css"
+import Headlines from "./Headlines"
+import DataOutput from "./DataOutput"
+import InitialOutput from "./InitialDataOutput"
 
-export default function Table () {
+export default function Table(props) {
+
     return (
-        <table className='result'>
-            <Headline>
-                <th>Year</th>
-                <th>Total savings</th>
-                <th>Interest (year)</th>
-                <th>Interested capital</th>
-            </Headline>
-            <Output/>
+        <table className={classes.result}>
+            <Headlines/>
+            <tbody>
+            {props.userInput ?
+                <DataOutput data={props.data} initialInvestment={props.userInput['current-savings']}/> :
+                <InitialOutput/>
+            }
+            </tbody>
         </table>
     )
 }
