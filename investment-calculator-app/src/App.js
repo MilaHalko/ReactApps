@@ -1,54 +1,33 @@
+import React from "react";
+import Header from "./components/Header/Header";
+import UserInput from "./components/UserInput/UserInput";
+import Table from "./components/Table/Table";
+
 export default function App() {
+    const calculateHandler = (userInput) => {
+        const yearlyData = []
+        let currentSavings = +userInput['current-savings']
+        const yearlyContribution = +userInput['yearly-contribution']
+        const expectedReturn = +userInput['expected-return'] / 100
+        const duration = +userInput['duration']
+
+        for (let i = 0; i < duration; i++) {
+            const yearlyInterest = currentSavings * expectedReturn
+            currentSavings += yearlyInterest + yearlyContribution
+            yearlyData.push({
+                year: i + 1,
+                yearlyInterest: yearlyInterest,
+                savingsEndOfYear: currentSavings,
+                yearlyContribution: yearlyContribution
+            })
+        }
+    }
+
     return (
         <div>
-            <header className='header'>
-                <img src={require('./assets/investment-calculator-logo.png')} alt='logo'/>
-                <h1>Investment Calculator</h1>
-            </header>
-            <form className='form'>
-                <div className='input-group'>
-                    <p>
-                        <label>Current savings ($)</label>
-                        <input type='number'/>
-                    </p>
-                    <p>
-                        <label>Yearly savings ($)</label>
-                        <input type='number'/>
-                    </p>
-                </div>
-                <div className='input-group'>
-                    <p>
-                        <label>Expected interest (%, per year)</label>
-                        <input type='number'/>
-                    </p>
-                    <p>
-                        <label>Investment duration (years)</label>
-                        <input type='number'/>
-                    </p>
-                </div>
-                <div className='actions'>
-                    <button type='reset' className='buttonAlt'>Reset</button>
-                    <button type='submit' className='button'>Calculate</button>
-                </div>
-            </form>
-            <table className='result'>
-                <thead>
-                <tr>
-                    <th>Year</th>
-                    <th>Total savings</th>
-                    <th>Interest (year)</th>
-                    <th>Interested capital</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Year number</td>
-                    <td>Total savings end of year</td>
-                    <td>Total interest gained</td>
-                    <td>Total interested capital</td>
-                </tr>
-                </tbody>
-            </table>
+            <Header/>
+            <UserInput/>
+            <Table/>
         </div>
     )
 }
