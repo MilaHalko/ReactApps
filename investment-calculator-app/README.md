@@ -1,1 +1,1 @@
-![investment-calculator-app screen](/public/images/Screenshot.png)
+![investment-calculator-app screen](/investment-calculator-app/public/images/Screenshot.png)
