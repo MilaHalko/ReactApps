@@ -1,0 +1,19 @@
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.input-group input {
+    font: inherit;
+    display: block;
+    width: 100%;
+    padding: 0.15rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #d5d5d5;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #b2b2b2;
+}
