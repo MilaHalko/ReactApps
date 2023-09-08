@@ -8,3 +8,8 @@
     margin-bottom: 0.5rem;
     padding: 0.5rem;
 }
+
+.no-users {
+    font-weight: bold;
+    text-align: center;
+}
