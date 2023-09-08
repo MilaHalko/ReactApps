@@ -1,6 +1,6 @@
+import React from "react";
 import UserInput from "./components/UserInput/UserInput";
 import UsersTable from "./components/UsersTable/UsersTable";
-import React from "react";
 
 export default function App() {
     const [usersList, setUsersList] = React.useState([])
