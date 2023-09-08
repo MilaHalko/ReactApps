@@ -7,8 +7,8 @@ export default function InputGroup(props) {
 
     return (
         <div className={classes['input-group']}>
-            <label>{props.label}</label>
-            <input type={props.type} onChange={inputChangeHandler} value={props.value}/>
+            <label htmlFor={props.id}>{props.label}</label>
+            <input id={props.id} type={props.type} onChange={inputChangeHandler} value={props.value}/>
         </div>
     )
 }
